@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h3= siteUrl
+
+  if data
+    each val in data
+      div ThreatType: #{val.threatType} 
+      div PlatformType: #{val.platformType}
+  else 
+    div OK
+    

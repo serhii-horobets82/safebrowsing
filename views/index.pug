@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1= title
+  p Check site status: 
+  form(action='/api/validate', method='POST')   
+    input(type='text', style="width:500px", name='siteUrl', id='siteUrl' value='http://testsafebrowsing.appspot.com/s/malware.html') 
+    button Check
