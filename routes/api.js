@@ -18,9 +18,19 @@ router.post("/validate", async (req, res) => {
   for (let j in hash) {
     hashes.push({ hash: hash[j][1] });
   }
-  const validateRes = await validate.hashCheckAsync(hashes);
+  const validateRes = await validate.hashCheck(hashes);
 
   res.render("result", { data: validateRes.matches, siteUrl });
+});
+
+router.get("/updatedb", async (req, res) => {
+  const result = await validate.updateThreatList();
+  res.sendStatus(200);
+});
+
+router.get("/viewdb", async (req, res) => {
+  const result = await validate.getLocalThreatList();
+  res.json(result);
 });
 
 module.exports = router;
