@@ -1,29 +1,26 @@
-var express = require("express");
-var validate = require("../lib/validate");
-let urlHash = require("../lib/urlHash");
+const express = require("express");
+const validate = require("../lib/validate");
+const urlHash = require("../lib/urlHash");
 
-var router = express.Router();
+const router = express.Router();
 
-/* GET users listing. */
-router.get("/", function(req, res, next) {
-  res.send("API echo");
+router.get("/validate", async (req, res) => {
+  const siteUrl = req.query.url;
+  const result = await validate.isUrlSafe(siteUrl);
+  res.json(result);
 });
 
-router.post("/validate", function(req, res, next) {
-  var siteUrl = req.body.siteUrl;
+router.post("/validate", async (req, res) => {
+  const siteUrl = req.body.siteUrl;
 
   let hashes = [];
-  let hash = urlHash.canonicalizeAndHashExpressions(siteUrl);
+  const hash = urlHash.canonicalizeAndHashExpressions(siteUrl);
   for (let j in hash) {
     hashes.push({ hash: hash[j][1] });
   }
+  const validateRes = await validate.hashCheckAsync(hashes);
 
-  validate.hashCheck(hashes, (err, validateRes) => {
-    if (validateRes) {
-      console.log(validateRes.matches);
-      res.render('result', {data : validateRes.matches, siteUrl});
-    }
-  });
+  res.render("result", { data: validateRes.matches, siteUrl });
 });
 
 module.exports = router;

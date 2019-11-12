@@ -7,6 +7,8 @@ block content
     each val in data
       div ThreatType: #{val.threatType} 
       div PlatformType: #{val.platformType}
+    p Json response  
+      code !{JSON.stringify(data)}
   else 
     div OK
     

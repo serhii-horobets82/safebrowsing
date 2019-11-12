@@ -2,7 +2,24 @@ extends layout
 
 block content
   h1= title
-  p Check site status: 
+  h4 Check site status: 
   form(action='/api/validate', method='POST')   
     input(type='text', style="width:500px", name='siteUrl', id='siteUrl' value='http://testsafebrowsing.appspot.com/s/malware.html') 
     button Check
+
+  h2 Check list
+  ul  
+    li 
+      a(href='/api/validate/?url=http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL/') MALWARE
+    li 
+      a(href='/api/validate/?url=http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/SOCIAL_ENGINEERING/URL/') SOCIAL_ENGINEERING
+    li 
+      a(href='/api/validate/?url=http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/UNWANTED_SOFTWARE/URL/') UNWANTED_SOFTWARE  
+    li 
+      a(href='/api/validate/?url=http://www.google.com/') GOOD    
+    li 
+      a(href='/api/validate/?url=https://skinfast.net') skinfast.net?
+    li 
+      a(href='/api/validate/?url=http://steamgotrade.com') steamgotrade.com?      
+      
+      
