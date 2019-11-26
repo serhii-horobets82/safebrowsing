@@ -49,3 +49,4 @@ console.log(cryptoHash.getNormalizedPrefix("abc"));
 
 let urlHash = require("./lib/urlHash");
 console.log(urlHash.canonicalizeAndHashExpressions('http://testsafebrowsing.appspot.com/s/malware.html'));
+console.log(urlHash.canonicalizeAndHashExpressions('http://www2.steamgotrade.com/'));

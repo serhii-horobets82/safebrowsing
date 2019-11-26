@@ -28,9 +28,16 @@ router.get("/updatedb", async (req, res) => {
   res.sendStatus(200);
 });
 
+router.get("/updatedbbin", async (req, res) => {
+  const result = await validate.updateThreatListBin();
+  res.send(200);
+});
+
 router.get("/viewdb", async (req, res) => {
   const result = await validate.getLocalThreatList();
   res.json(result);
 });
+
+validate.updateThreatListBin();
 
 module.exports = router;
