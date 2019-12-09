@@ -1,7 +1,7 @@
 const express = require("express");
 const validate = require("../lib/validate");
 const urlHash = require("../lib/urlHash");
-
+const RiceDecoder = require("../lib/riceDecoder")
 const router = express.Router();
 
 router.get("/validate", async (req, res) => {
