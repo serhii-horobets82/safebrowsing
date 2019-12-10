@@ -2,6 +2,13 @@ const RiceDecoder = require("../lib/riceDecoder");
 const { readFileSync, writeFileSync } = require("fs");
 const _ = require("lodash");
 
+let h = 122405958;
+let buf = Buffer.alloc(4);
+buf.writeUInt32LE(h);
+console.log("h= [", h, "]");
+console.log("  buf=[", [...buf], "]");
+console.log("  hash=[", buf.toString('base64'), "]");
+
 const testsData = [
   {
     riceParameter: 2,
