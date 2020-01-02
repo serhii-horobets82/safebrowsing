@@ -44,9 +44,27 @@ console.log(LookupExpressions("http://a.b.c/1/2.html?param=1"));
 /* https://developers.google.com/safe-browsing/v4/urls-hashing#hash-computations */
 let cryptoHash = require("./lib/cryptoHash");
 
-console.log(cryptoHash.getHashObject("abc"));
-console.log(cryptoHash.getNormalizedPrefix("abc"));
 
 let urlHash = require("./lib/urlHash");
-console.log(urlHash.canonicalizeAndHashExpressions('http://testsafebrowsing.appspot.com/s/malware.html'));
-console.log(urlHash.canonicalizeAndHashExpressions('http://www2.steamgotrade.com/'));
+//console.log(urlHash.canonicalizeAndHashExpressions('http://testsafebrowsing.appspot.com/s/malware.html'));
+var ar = urlHash.canonicalizeAndHashExpressions('http://www.steamgotrade.com/');
+console.log(ar[0][1]);
+console.log(ar[0][2]);
+
+var a1 = Buffer.from(ar[0][1], "base64");
+var a2 = Buffer.from(ar[0][2], "base64");
+
+//console.log(a1, a1.toString("Int32"));
+
+const buf = Buffer.allocUnsafe(32);
+buf.writeInt32LE(a1, 0);
+
+//buf.writeInt32LE(0x05060708, 4);
+console.log(a2);
+console.log(a2.toString("base64"));
+console.log(a2.toString("hex"));
+console.log(buf.toString("hex"));
+console.log("8F058776");
+console.log(parseInt("8F058776", 16));
+//console.log(Buffer.from(ar[0][2], "base64").toString("hex").toUpperCase());
+console.log('7687058F47D479881E06AA1E3B6192323976162BDAD5E400DF84EAE0078AC79D');
